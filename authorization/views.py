@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from authorization.serializers import UserSerializer
 from rest_framework import generics, status
 
+
 class LoginAPIView(generics.GenericAPIView):
     serializer_class = UserSerializer
 

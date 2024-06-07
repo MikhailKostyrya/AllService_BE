@@ -1,10 +1,12 @@
 from authorization.models import ExecutorData, User
 from rest_framework import serializers
 
+
 class ExecutorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecutorData
         fields = ['id', 'content', 'contact_executor', 'inn']
+
 
 class UserSerializer(serializers.ModelSerializer):
     executor_data = ExecutorDataSerializer(required=False)

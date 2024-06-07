@@ -15,7 +15,6 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
 
         return self.create_user(email, password, **extra_fields)
 
@@ -26,6 +25,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     contact = models.CharField(max_length=255)
+    is_staff = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)
     executor_data = models.OneToOneField('ExecutorData', on_delete=models.SET_NULL, null=True, unique=True)
     # request = models.ForeignKey('requests.Request', on_delete=models.SET_NULL, null=True)
