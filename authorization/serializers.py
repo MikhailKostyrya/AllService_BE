@@ -1,5 +1,6 @@
 from authorization.models import ExecutorData, User
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
 
 
 class ExecutorDataSerializer(serializers.ModelSerializer):
@@ -38,3 +39,13 @@ class UserSerializer(serializers.ModelSerializer):
     #             instance.executor_data = ExecutorData.objects.create(executor_data)
     #             instance.save()
     #     return instance
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'first_name', 'second_name')
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        user = User.objects.create(**validated_data)
+        return user
