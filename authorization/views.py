@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
-from authorization.serializers import UserSerializer,UserRegistrationSerializer
+from authorization.serializers import UserLoginSerializer, UserSerializer,UserRegistrationSerializer
 from rest_framework import generics, status
 
 
-class LoginAPIView(generics.GenericAPIView):
-    serializer_class = UserSerializer
+class UserLoginAPIView(generics.GenericAPIView):
+    serializer_class = UserLoginSerializer
 
     def post(self, request):
         email = request.data.get('email')

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.forms import ValidationError
 
 
 class UserManager(BaseUserManager):
@@ -27,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     contact = models.CharField(max_length=255)
     is_staff = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)
-    executor_data = models.OneToOneField('ExecutorData', on_delete=models.SET_NULL, null=True, unique=True)
+    executor_data = models.OneToOneField('ExecutorData', on_delete=models.SET_NULL, null=True, unique=True, blank=True)
     # request = models.ForeignKey('requests.Request', on_delete=models.SET_NULL, null=True)
 
     objects = UserManager()
@@ -37,6 +38,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+    def clean(self):
+        super().clean()
+        if self.is_executor and not self.executor_data:
+            raise ValidationError({
+                'executor_data': 'This field is required when "Is executor" is checked.'
+            })
 
 
 class ExecutorData(models.Model):
