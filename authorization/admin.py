@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from authorization.models import User, ExecutorData
+from .models import User, ExecutorData
 
 
 @admin.register(ExecutorData)

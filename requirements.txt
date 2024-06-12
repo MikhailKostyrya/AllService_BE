@@ -11,3 +11,5 @@ django-extensions==3.2.3
 django-cors-headers==4.3.1
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
+cachetools==5.3.3
+django-debug-toolbar==4.4.2

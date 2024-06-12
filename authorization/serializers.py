@@ -2,7 +2,6 @@ from authorization.models import ExecutorData, User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 
-
 class ExecutorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecutorData
@@ -59,3 +58,17 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data['password'])
         user = User.objects.create(**validated_data)
         return user
+    
+
+class SendActivationCodeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class VerifyActivationCodeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    code = serializers.CharField(max_length=4)
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    new_password = serializers.CharField(max_length=128)
