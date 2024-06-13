@@ -56,15 +56,15 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
-        user = User.objects.create(**validated_data)
+        user = User.objects.create_user(is_active=False, **validated_data)
         return user
     
 
-class SendActivationCodeSerializer(serializers.Serializer):
+class SendVerificationCodeSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 
-class VerifyActivationCodeSerializer(serializers.Serializer):
+class VerifyVerificationCodeSerializer(serializers.Serializer):
     email = serializers.EmailField()
     code = serializers.CharField(max_length=4)
 

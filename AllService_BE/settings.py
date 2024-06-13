@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authorization',
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -50,13 +49,13 @@ MIDDLEWARE = [
 ]
 
 INTERNAL_IPS = [
-    '158.160.11.30',
+    '158.160.91.177',
     '127.0.0.1',
     '172.31.0.3',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://158.160.11.30:8000",
+    "http://158.160.91.177:8000",
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -184,7 +183,10 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    BASE_DIR/ 'static'
+]
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type

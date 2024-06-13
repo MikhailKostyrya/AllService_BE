@@ -160,3 +160,4 @@ cython_debug/
 .idea/
 .flake8
 .DS_Store
+command.txt/

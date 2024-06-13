@@ -31,6 +31,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=255)
     contact = models.CharField(max_length=255) # change to number
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)
     executor_data = models.OneToOneField('ExecutorData', on_delete=models.SET_NULL, null=True, unique=True, blank=True)
     # request = models.ForeignKey('requests.Request', on_delete=models.SET_NULL, null=True)
