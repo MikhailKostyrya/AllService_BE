@@ -1,6 +1,6 @@
-from authorization.models import ExecutorData, User
+from users.models import ExecutorData, User
 from rest_framework import serializers
-
+from django.contrib.auth.hashers import make_password
 
 class ExecutorDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,3 +38,37 @@ class UserSerializer(serializers.ModelSerializer):
     #             instance.executor_data = ExecutorData.objects.create(executor_data)
     #             instance.save()
     #     return instance
+
+class UserLoginSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'email': {'required': True}
+        }
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'first_name', 'second_name')
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        user = User.objects.create_user(is_active=False, **validated_data)
+        return user
+    
+
+class SendVerificationCodeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class VerifyVerificationCodeSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    code = serializers.CharField(max_length=4)
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    new_password = serializers.CharField(max_length=128)

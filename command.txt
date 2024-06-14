@@ -1,0 +1,7 @@
+sudo docker-compose exec db /bin/bash -- переход в докер
+
+python3 -m venv venv -- создание venv
+source venv/bin/activate -- запуск venv
+deactivate -- выход из venv
+
+python3 manage.py loaddata <folder>/<filename>.json -- заполнение бд данными из json
