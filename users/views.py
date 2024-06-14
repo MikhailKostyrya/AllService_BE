@@ -4,7 +4,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from AllService_BE import settings
 from .models import User
-from authorization.serializers import ResetPasswordSerializer, SendVerificationCodeSerializer, UserLoginSerializer, UserSerializer,UserRegistrationSerializer, VerifyVerificationCodeSerializer
+from users.serializers import ResetPasswordSerializer, SendVerificationCodeSerializer, UserLoginSerializer, UserSerializer,UserRegistrationSerializer, VerifyVerificationCodeSerializer
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from django.template.loader import render_to_string
