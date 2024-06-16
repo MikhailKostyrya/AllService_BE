@@ -14,6 +14,8 @@ import cachetools
 from django.urls import reverse
 import random
 import string
+from rest_framework.permissions import IsAuthenticated
+
 
 cache = cachetools.TTLCache(maxsize=100, ttl=600)
 
@@ -147,3 +149,26 @@ class ResetPasswordView(APIView):
             del cache[email]
 
         return Response({"message": "Password reset successfully."}, status=status.HTTP_200_OK)
+
+
+class DeleteAccountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        request.user.delete()
+        return Response({"message": "Account deleted successfully."}, status=status.HTTP_200_OK)
+
+
+class UserProfileUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+    def put(self, request, *args, **kwargs):
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_BAD_REQUEST)

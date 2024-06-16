@@ -2,6 +2,7 @@ from users.models import ExecutorData, User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 
+
 class ExecutorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecutorData
@@ -19,25 +20,19 @@ class UserSerializer(serializers.ModelSerializer):
             'email': {'required': True}
         }
 
-    # def create(self, validated_data):
-    #     executor_data = validated_data.pop('executor_data', None)
-    #     user = User.objects.create_user(validated_edit_data)
-    #     if executor_data:
-    #         executor_data_instance = ExecutorData.objects.create(executor_data)
-    #         user.executor_data = executor_data_instance
-    #         user.save()
-    #     return user
+    def update(self, instance, validated_data):
+        executor_data = validated_data.pop('executor_data', None)
+        password = validated_data.pop('password', None)
+        if password:
+            instance.set_password(password)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
 
-    # def update(self, instance, validated_data):
-    #     executor_data = validated_data.pop('executor_data', None)
-    #     instance = super(UserSerializer, self).update(instance, validated_data)
-    #     if executor_data:
-    #         if hasattr(instance, 'executor_data'):
-    #             ExecutorData.objects.filter(id=instance.executordata.id).update(executor_data)
-    #         else:
-    #             instance.executor_data = ExecutorData.objects.create(executor_data)
-    #             instance.save()
-    #     return instance
+        if instance.is_executor and executor_data is not None:
+            ExecutorData.objects.update_or_create(defaults=executor_data, user=instance)
+        
+        return instance
 
 class UserLoginSerializer(serializers.ModelSerializer):
 
