@@ -2,11 +2,11 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from users.models import ExecutorData
 from .models import Service
-from catalog.serializers import ServiceSerializer
+from .serializers import ServiceSerializer
 from rest_framework import generics, status, mixins
 from drf_yasg.utils import swagger_auto_schema
 from django.db.models import Q
-from django.contrib.postgres.search import SearchVector, SearchQuery,SearchRank
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 
 class ServiceCreateAPIView(generics.GenericAPIView):
@@ -102,8 +102,6 @@ class ServiceByCategoryAPIView(generics.ListAPIView):
     def get_queryset(self):
         category_id = self.kwargs['category_id']
         return Service.objects.filter(category_id=category_id)
-
-
 
 
 class ServiceCatalogAPIView(generics.GenericAPIView):
