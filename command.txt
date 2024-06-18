@@ -1,4 +1,6 @@
 sudo docker-compose exec db /bin/bash -- переход в докер
+sudo docker-compose up -d --build -- запуск
+sudo docker-compose down -- остановка 
 
 python3 -m venv venv -- создание venv
 source venv/bin/activate -- запуск venv

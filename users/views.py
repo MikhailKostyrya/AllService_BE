@@ -86,6 +86,7 @@ class UserRegistrationAPIView(generics.GenericAPIView):
         email_message.send()
 
 class SendVerificationCodeView(APIView):
+    @swagger_auto_schema(request_body=SendVerificationCodeSerializer)
     def post(self, request, *args, **kwargs):
         serializer = SendVerificationCodeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -115,6 +116,7 @@ class SendVerificationCodeView(APIView):
         return Response({"message": "Verification code sent to email"}, status=status.HTTP_200_OK)
 
 class VerifyVerificationCodeView(APIView):
+    @swagger_auto_schema(request_body=VerifyVerificationCodeSerializer)
     def post(self, request, *args, **kwargs):
         serializer = VerifyVerificationCodeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -132,6 +134,7 @@ class VerifyVerificationCodeView(APIView):
         return Response({"message": "Verification code is valid."}, status=status.HTTP_200_OK)
 
 class ResetPasswordView(APIView):
+    @swagger_auto_schema(request_body=ResetPasswordSerializer)
     def post(self, request, *args, **kwargs):
         serializer = ResetPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
