@@ -15,6 +15,7 @@ from django.urls import reverse
 import random
 import string
 from rest_framework.permissions import IsAuthenticated
+from drf_yasg.utils import swagger_auto_schema
 
 
 cache = cachetools.TTLCache(maxsize=100, ttl=600)
@@ -165,7 +166,8 @@ class UserProfileUpdateView(APIView):
     def get(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
-
+    
+    @swagger_auto_schema(request_body=UserSerializer, responses={200: UserSerializer, 400: "JSON with error messages"})
     def put(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user, data=request.data, partial=True)
         if serializer.is_valid():
