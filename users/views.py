@@ -14,6 +14,7 @@ import cachetools
 from django.urls import reverse
 import random
 import string
+from rest_framework.permissions import IsAuthenticated
 from drf_yasg.utils import swagger_auto_schema
 
 
@@ -152,3 +153,27 @@ class ResetPasswordView(APIView):
             del cache[email]
 
         return Response({"message": "Password reset successfully."}, status=status.HTTP_200_OK)
+
+
+class DeleteAccountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        request.user.delete()
+        return Response({"message": "Account deleted successfully."}, status=status.HTTP_200_OK)
+
+
+class UserProfileUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+    
+    @swagger_auto_schema(request_body=UserSerializer, responses={200: UserSerializer, 400: "JSON with error messages"})
+    def put(self, request, *args, **kwargs):
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_BAD_REQUEST)
