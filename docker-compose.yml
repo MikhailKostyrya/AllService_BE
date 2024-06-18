@@ -22,6 +22,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - elastic
     env_file:
       - .env
 
@@ -35,5 +36,21 @@ services:
     depends_on:
       - web
 
+  elastic:
+    image: elasticsearch:7.17.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+
 volumes:
   pgdata:
+  esdata:
