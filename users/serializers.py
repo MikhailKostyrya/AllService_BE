@@ -1,12 +1,12 @@
 from users.models import ExecutorData, User
 from rest_framework import serializers
-from django.contrib.auth.hashers import make_password
 
 
 class ExecutorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExecutorData
         fields = ['id', 'content', 'contact_executor', 'inn']
+        ref_name = 'UsersExecutorData'
 
 
 class UserSerializer(serializers.ModelSerializer):
