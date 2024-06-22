@@ -14,7 +14,7 @@ class Service(models.Model):
     name = models.CharField(max_length=200, null=False)
     content = models.TextField(null=False)
     timetable = models.CharField(max_length=200, null=False)
-    adress = models.CharField(max_length=200, null=False)
+    address = models.CharField(max_length=200, null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     executor = models.ForeignKey(ExecutorData, on_delete=models.CASCADE, null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)

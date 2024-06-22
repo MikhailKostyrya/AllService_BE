@@ -24,7 +24,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Service
-        fields = ['id', 'name', 'content', 'timetable', 'adress', 'price', 'executor', 'category']
+        fields = ['id', 'name', 'content', 'timetable', 'address', 'price', 'executor', 'category']
 
     def create(self, validated_data):
         request = self.context.get('request')
@@ -32,3 +32,7 @@ class ServiceSerializer(serializers.ModelSerializer):
         executor = ExecutorData.objects.get(user=request.user)
         service = Service.objects.create(executor=executor, category=category, **validated_data)
         return service
+
+
+class ServiceSearchSerializer(serializers.Serializer):
+    search = serializers.CharField(max_length=50)

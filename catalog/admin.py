@@ -6,8 +6,8 @@ from catalog.models import Category, Service
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'content', 'timetable', 'adress', 'price', 'executor_id', 'category_id']
-    search_fields = ['name', 'content', 'adress', 'price', 'category_id']
+    list_display = ['id', 'name', 'content', 'timetable', 'address', 'price', 'executor_id', 'category_id']
+    search_fields = ['name', 'content', 'address', 'price', 'category_id']
 
 
 @admin.register(Category)
