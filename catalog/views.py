@@ -1,12 +1,13 @@
 from django.shortcuts import render
+from elasticsearch import ElasticsearchException
 from rest_framework.response import Response
+from serach.client import ElasticClient
+from django.forms import model_to_dict
 from users.models import ExecutorData
 from .models import Service
-from .serializers import ServiceSerializer
+from .serializers import ServiceSearchSerializer, ServiceSerializer
 from rest_framework import generics, status, mixins
 from drf_yasg.utils import swagger_auto_schema
-from django.db.models import Q
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 
 class ServiceCreateAPIView(generics.GenericAPIView):
@@ -17,11 +18,37 @@ class ServiceCreateAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         
         service = serializer.save()
+        self.update_elastic(service)
 
         return Response({
             "service": ServiceSerializer(service, context={'request': request}).data,
             "message": "Service created successfully"
         }, status=status.HTTP_201_CREATED)
+    
+    def update_elastic(self, service):
+        client = ElasticClient()
+        try:
+            data = [{"index": {"_index": client.index, "_id": service.id}}]
+            service_dict = model_to_dict(service, fields=[field.name for field in service._meta.fields])
+            data.append(service_dict)
+            client.bulk(data)
+        except ElasticsearchException as e:
+            print(f"An error occurred while indexing the service: {e}")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+    
+
+class ServiceSearchAPIView(generics.GenericAPIView):
+    serializer_class = ServiceSerializer
+
+    @swagger_auto_schema(request_body=ServiceSearchSerializer, responses={200: ServiceSerializer(many=True)})
+    def post(self, request):
+        """Поиск услуг"""
+        search = request.data['search']
+        client = ElasticClient()
+        service_ids = client.search(search)
+        services = Service.objects.filter(id__in=service_ids)
+        return Response(ServiceSerializer(services, many=True).data, status=200)
 
 
 class ServiceUpdateAPIView(mixins.UpdateModelMixin, generics.GenericAPIView):
@@ -40,10 +67,19 @@ class ServiceUpdateAPIView(mixins.UpdateModelMixin, generics.GenericAPIView):
         executor = request.user.executor_data
         service = serializer.save(executor=executor)
 
+        self.update_elastic(service)
+
         return Response({
             "service": ServiceSerializer(service, context={'request': request}).data,
             "message": "Service updated successfully"
         }, status=status.HTTP_200_OK)
+
+    def update_elastic(self, service):
+        client = ElasticClient()
+        data = [{"index": {"_index": client.index, "_id": service.id}}]
+        service_dict = model_to_dict(service, fields=[field.name for field in service._meta.fields])
+        data.append(service_dict)
+        client.bulk(data)
 
 
 class ServiceDeleteAPIView(generics.DestroyAPIView):
@@ -52,12 +88,18 @@ class ServiceDeleteAPIView(generics.DestroyAPIView):
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
+        self.delete_from_elastic(instance)
+
         return Response({
             "message": "Service deleted successfully"
         }, status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):
         instance.delete()
+
+    def delete_from_elastic(self, service):
+        client = ElasticClient()
+        client.delete_document(service.id)
 
 
 class ServiceListAPIView(generics.ListAPIView):
@@ -116,17 +158,8 @@ class ServiceCatalogAPIView(generics.GenericAPIView):
 
         services = Service.objects.all()
 
-        def q_search(query):
-            vector = SearchVector("name", "content")
-            query = SearchQuery(query)
-            return Service.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gt=0).order_by("-rank")
-
-
         if category_name and category_name != 'all':
             services = Service.objects.filter(category__category_name=category_name)
-            
-        if query:
-            services = q_search(query)
 
         if min_price is not None:
             services = services.filter(price__gte=min_price)

@@ -34,7 +34,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)
     executor_data = models.OneToOneField('ExecutorData', on_delete=models.SET_NULL, null=True, unique=True, blank=True)
-    # request = models.ForeignKey('requests.Request', on_delete=models.SET_NULL, null=True)
 
     objects = UserManager()
 
