@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from users.views import DeleteAccountView, ResetPasswordView, SendVerificationCodeView, UserLoginAPIView, UserProfileUpdateView, UserRegistrationAPIView, VerifyAccountView, VerifyVerificationCodeView
+from users.views import DeleteAccountView, SendVerificationCodeView, UserLoginAPIView, UserProfileUpdateView, UserRegistrationAPIView, VerifyAccountView, VerifyAndResetPasswordView
 
 
 urlpatterns = [
@@ -14,8 +14,7 @@ urlpatterns = [
     path('delete/', DeleteAccountView.as_view(), name='delete-account'),
     path('register/', UserRegistrationAPIView.as_view(), name='register'),
     path('send-activation/', SendVerificationCodeView.as_view(), name='send-activation-code'),
-    path('verify/', VerifyVerificationCodeView.as_view(), name='verify-activation-code'),
-    path('reset-password/', ResetPasswordView.as_view(), name='reset_password'),
+    path('reset-password/', VerifyAndResetPasswordView.as_view(), name='reset_password'),
     path('verify-activation/<int:user_id>/', VerifyAccountView.as_view(), name='verify-activation'),
     path('profile/update/', UserProfileUpdateView.as_view(), name='profile-update'),
 

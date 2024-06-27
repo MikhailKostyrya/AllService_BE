@@ -23,6 +23,7 @@ services:
     depends_on:
       - db
       - elastic
+      - redis
     env_file:
       - .env
 
@@ -51,6 +52,14 @@ services:
     ports:
       - "9200:9200"
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
 volumes:
   pgdata:
   esdata:
+  redisdata:

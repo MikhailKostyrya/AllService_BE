@@ -161,3 +161,5 @@ cython_debug/
 .flake8
 .DS_Store
 command.txt/
+static
+media

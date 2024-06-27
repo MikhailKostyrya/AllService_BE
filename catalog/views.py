@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from elasticsearch import ElasticsearchException
 from rest_framework.response import Response
-from serach.client import ElasticClient
+from .pagination import CustomPagination
+from search.client import ElasticClient
 from django.forms import model_to_dict
 from users.models import ExecutorData
 from .models import Service
@@ -40,6 +41,7 @@ class ServiceCreateAPIView(generics.GenericAPIView):
 
 class ServiceSearchAPIView(generics.GenericAPIView):
     serializer_class = ServiceSerializer
+    pagination_class = CustomPagination
 
     @swagger_auto_schema(request_body=ServiceSearchSerializer, responses={200: ServiceSerializer(many=True)})
     def post(self, request):
@@ -95,7 +97,8 @@ class ServiceDeleteAPIView(generics.DestroyAPIView):
         }, status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):
-        instance.delete()
+        instance.deleted = True
+        instance.save()
 
     def delete_from_elastic(self, service):
         client = ElasticClient()
@@ -109,6 +112,7 @@ class ServiceListAPIView(generics.ListAPIView):
     """
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+    pagination_class = CustomPagination
 
     @swagger_auto_schema(operation_description="Get all services")
     def get(self, request, *args, **kwargs):
@@ -135,6 +139,7 @@ class ServiceByCategoryAPIView(generics.ListAPIView):
     Return a list of services filtered by category ID.
     """
     serializer_class = ServiceSerializer
+    pagination_class = CustomPagination
 
     @swagger_auto_schema(operation_description="Get all services filtered by category ID")
     def get(self, request, *args, **kwargs):
@@ -148,7 +153,7 @@ class ServiceByCategoryAPIView(generics.ListAPIView):
 
 class ServiceCatalogAPIView(generics.GenericAPIView):
     serializer_class = ServiceSerializer
-
+    pagination_class = CustomPagination
 
     def get(self, request, category_name=None):
         order_by = request.GET.get('order_by', None)

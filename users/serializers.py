@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'second_name', 'email', 'contact', 'is_executor', 'executor_data']
+        fields = ['id', 'first_name', 'second_name', 'email', 'contact', 'is_executor', 'executor_data', 'photo']
         extra_kwargs = {
             'password': {'write_only': True},
             'email': {'required': True}
@@ -65,4 +65,5 @@ class VerifyVerificationCodeSerializer(serializers.Serializer):
 
 class ResetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
+    code = serializers.CharField(max_length=4)
     new_password = serializers.CharField(max_length=128)

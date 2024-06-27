@@ -1,0 +1,706 @@
+[
+    {
+        "model": "catalog.service",
+        "pk": 1,
+        "fields": {
+            "name": "Маникюр",
+            "content": "Маникюр с лаком",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "10.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty1.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 2,
+        "fields": {
+            "name": "Педикюр",
+            "content": "Педикюр с удалением мягкого рогового слоя",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "15.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty2.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 3,
+        "fields": {
+            "name": "Массаж лица",
+            "content": "Антистрессовый массаж лица продолжительностью 30 минут",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "25.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty3.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 4,
+        "fields": {
+            "name": "Покраска волос",
+            "content": "Покраска волос с использованием высококачественных красителей",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "50.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty4.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 5,
+        "fields": {
+            "name": "Стрижка волос",
+            "content": "Стрижка волос по индивидуальному дизайну",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "20.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty5.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 6,
+        "fields": {
+            "name": "Макияж",
+            "content": "Дневной макияж",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "30.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty6.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 7,
+        "fields": {
+            "name": "Укладка волос",
+            "content": "Укладка волос на вечер",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "35.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty7.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 8,
+        "fields": {
+            "name": "Эпиляция",
+            "content": "Эпиляция волос на ногах",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "25.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty8.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 9,
+        "fields": {
+            "name": "Спа-процедуры",
+            "content": "Спа-процедура с ароматерапией",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "80.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty9.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 10,
+        "fields": {
+            "name": "Ламинация ресниц",
+            "content": "Ламинация ресниц на 2-3 недели",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Красивая, 1",
+            "price": "40.00",
+            "executor": 1,  
+            "category": 1,
+            "photo": "static/service/beauty10.jpg"
+        }
+    },
+
+    {
+        "model": "catalog.service",
+        "pk": 11,
+        "fields": {
+            "name": "Уборка квартиры",
+            "content": "Уборка квартиры с использованием профессиональных средств",
+            "timetable": "Ежедневно с 9:00 до 18:00",
+            "address": "ул. Чистая, 2",
+            "price": "20.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home1.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 12,
+        "fields": {
+            "name": "Уборка дома",
+            "content": "Уборка дома с использованием профессиональных средств",
+            "timetable": "Ежедневно с 9:00 до 18:00",
+            "address": "ул. Чистая, 2",
+            "price": "30.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home2.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 13,
+        "fields": {
+            "name": "Похоронка белья",
+            "content": "Похоронка белья на 10 кг",
+            "timetable": "Ежедневно с 9:00 до 18:00",
+            "address": "ул. Чистая, 2",
+            "price": "10.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home3.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 14,
+        "fields": {
+            "name": "Ремонт мебели",
+            "content": "Ремонт мебели (замена деталей, покраска)",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "50.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home4.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 15,
+        "fields": {
+            "name": "Установка ламп",
+            "content": "Установка ламп и люстр",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "30.00",
+            "executor": 2, 
+            "category": 2,
+            "photo": "static/service/home5.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 16,
+        "fields": {
+            "name": "Покраска стен",
+            "content": "Покраска стен одной комнаты",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "150.00",
+            "executor": 2, 
+            "category": 2,
+            "photo": "static/service/home6.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 17,
+        "fields": {
+            "name": "Укладка паркета",
+            "content": "Укладка паркета в одной комнате",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "200.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home7.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 18,
+        "fields": {
+            "name": "Установка сантехники",
+            "content": "Установка сантехники (смеситель, раковина, ванна)",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "250.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home8.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 19,
+        "fields": {
+            "name": "Ремонт электроприборов",
+            "content": "Ремонт электроприборов (бытовая техника)",
+            "timetable": "По заявке",
+            "address": "ул. Чистая, 2",
+            "price": "50.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home9.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 20,
+        "fields": {
+            "name": "Садовничество",
+            "content": "Уход за садом (полив, стрижка газона)",
+            "timetable": "Еженедельно",
+            "address": "ул. Чистая, 2",
+            "price": "30.00",
+            "executor": 2,  
+            "category": 2,
+            "photo": "static/service/home10.jpg"
+        }
+    },
+
+    {
+        "model": "catalog.service",
+        "pk": 21,
+        "fields": {
+            "name": "Консультация терапевта",
+            "content": "Консультация терапевта по общим вопросам здоровья",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "50.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical1.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 22,
+        "fields": {
+            "name": "Консультация стоматолога",
+            "content": "Консультация стоматолога, диагностика и лечение зубов",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "100.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical2.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 23,
+        "fields": {
+            "name": "Консультация невролога",
+            "content": "Консультация невролога по нервным заболеваниям",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "70.00",
+            "executor": 3, 
+            "category": 3,
+            "photo": "static/service/medical3.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 24,
+        "fields": {
+            "name": "Консультация кардиолога",
+            "content": "Консультация кардиолога по сердечно-сосудистым заболеваниям",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "120.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical4.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 25,
+        "fields": {
+            "name": "Консультация дерматолога",
+            "content": "Консультация дерматолога по кожным заболеваниям",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "80.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical5.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 26,
+        "fields": {
+            "name": "Массаж терапевтический",
+            "content": "Терапевтический массаж для улучшения общиного самочувствия",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Здоровая, 1",
+            "price": "40.00",
+            "executor": 3, 
+            "category": 3,
+            "photo": "static/service/medical6.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 27,
+        "fields": {
+            "name": "Акупунктура",
+            "content": "Акупунктурное лечение для облегчения болей",
+            "timetable": "Ежедневно с 10:00 до 20:00",
+            "address": "ул. Здоровая, 1",
+            "price": "60.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical7.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 28,
+        "fields": {
+            "name": "Физиотерапия",
+            "content": "Физиотерапевтические процедуры для восстановления функций организма",
+            "timetable": "Ежедневно с 9:00 до 19:00",
+            "address": "ул. Здоровая, 1",
+            "price": "80.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical8.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 29,
+        "fields": {
+            "name": "Рефлексология",
+            "content": "Рефлексологическое лечение для устранения болезненных ощущений",
+            "timetable": "Понедельник-пятница с 10:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "50.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical9.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 30,
+        "fields": {
+            "name": "Хомеопатия",
+            "content": "Хомеопатическое лечение с использованием природных препаратов",
+            "timetable": "Понедельник-пятница с 9:00 до 18:00",
+            "address": "ул. Здоровая, 1",
+            "price": "70.00",
+            "executor": 3,
+            "category": 3,
+            "photo": "static/service/medical10.jpg"
+        }
+    },
+
+    {
+        "model": "catalog.service",
+        "pk": 31,
+        "fields": {
+            "name": "Уроки английского языка",
+            "content": "Индивидуальные уроки английского языка для взрослых",
+            "timetable": "Ежедневно с 10:00 до 21:00",
+            "address": "ул. Ученая, 1",
+            "price": "30.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education1.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 32,
+        "fields": {
+            "name": "Уроки математики",
+            "content": "Индивидуальные уроки математики для школьников",
+            "timetable": "Понедельник-пятница с 14:00 до 19:00",
+            "address": "ул. Ученая, 1",
+            "price": "25.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education2.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 33,
+        "fields": {
+            "name": "Уроки физики",
+            "content": "Индивидуальные уроки физики для школьников",
+            "timetable": "Понедельник-пятница с 15:00 до 18:00",
+            "address": "ул. Ученая, 1",
+            "price": "25.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education3.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 34,
+        "fields": {
+            "name": "Уроки химии",
+            "content": "Индивидуальные уроки химии для школьников",
+            "timetable": "Понедельник-пятница с 16:00 до 19:00",
+            "address": "ул. Ученая, 1",
+            "price": "25.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education4.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 35,
+        "fields": {
+            "name": "Уроки литературы",
+            "content": "Индивидуальные уроки литературы для школьников",
+            "timetable": "Вторник и четверг с 16:00 до 18:00",
+            "address": "ул. Ученая, 1",
+            "price": "25.00",
+            "executor": 4, 
+            "category": 4,
+            "photo": "static/service/education5.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 36,
+        "fields": {
+            "name": "Уроки истории",
+            "content": "Индивидуальные уроки истории для школьников",
+            "timetable": "Среда с 16:00 до 18:00",
+            "address": "ул. Ученая, 1",
+            "price": "25.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education6.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 37,
+        "fields": {
+            "name": "Уроки иностранных языков",
+            "content": "Индивидуальные уроки иностранных языков для взрослых",
+            "timetable": "Ежедневно с 10:00 до 21:00",
+            "address": "ул. Ученая, 1",
+            "price": "30.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education7.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 38,
+        "fields": {
+            "name": "Подготовка к экзаменам",
+            "content": "Подготовка к экзаменам по школьным предметам",
+            "timetable": "По индивидуальному графику",
+            "address": "ул. Ученая, 1",
+            "price": "40.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education8.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 39,
+        "fields": {
+            "name": "Онлайн-курсы",
+            "content": "Онлайн-курсы по различным тематикам",
+            "timetable": "Доступны круглосуточно",
+            "address": "Онлайн",
+            "price": "20.00",
+            "executor": 4, 
+            "category": 4,
+            "photo": "static/service/education9.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 40,
+        "fields": {
+            "name": "Личный тренер по обучению",
+            "content": "Личный тренер для помощи в обучении",
+            "timetable": "По индивидуальному графику",
+            "address": "ул. Ученая, 1",
+            "price": "50.00",
+            "executor": 4,  
+            "category": 4,
+            "photo": "static/service/education10.jpg"
+        }
+    },
+    
+    {
+        "model": "catalog.service",
+        "pk": 41,
+        "fields": {
+            "name": "Поход с собакой",
+            "content": "Поход с собакой продолжительностью 1 часа",
+            "timetable": "Ежедневно с 8:00 до 20:00",
+            "address": "Парк Зеленый",
+            "price": "15.00",
+            "executor": 5, 
+            "category": 5,
+            "photo": "static/service/pet1.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 42,
+        "fields": {
+            "name": "Grooming для собак",
+            "content": "Стрижка и уход за шерстью собак",
+            "timetable": "По предварительной договорённости",
+            "address": "Салон для животных",
+            "price": "25.00",
+            "executor": 5,
+            "category": 5,
+            "photo": "static/service/pet2.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 43,
+        "fields": {
+            "name": "Домашние уроки для собак",
+            "content": "Обучение собак базовым послушанию",
+            "timetable": "По индивидуальному графику",
+            "address": "Домашний визит",
+            "price": "30.00",
+            "executor": 5,
+            "category": 5,
+            "photo": "static/service/pet3.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 44,
+        "fields": {
+            "name": "Питание для животных",
+            "content": "Поставка еды и аксессуаров для животных",
+            "timetable": "Еженедельно или по запросу",
+            "address": "Домашняя доставка",
+            "price": "20.00",
+            "executor": 5,
+            "category": 5,
+            "photo": "static/service/pet4.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 45,
+        "fields": {
+            "name": "Ветеринарная помощь",
+            "content": "Домашний визит ветеринара",
+            "timetable": "По предварительной договорённости",
+            "address": "Домашний визит",
+            "price": "50.00",
+            "executor": 5, 
+            "category": 5,
+            "photo": "static/service/pet5.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 46,
+        "fields": {
+            "name": "Прививки для животных",
+            "content": "Прививки и вакцинация для собак и кошек",
+            "timetable": "По предварительной договорённости",
+            "address": "Ветеринарная клиника",
+            "price": "30.00",
+            "executor": 5,
+            "category": 5,
+            "photo": "static/service/pet6.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 47,
+        "fields": {
+            "name": "Кастрирование/стерилизация животных",
+            "content": "Кастрирование или стерилизация собак и кошек",
+            "timetable": "По предварительной договорённости",
+            "address": "Ветеринарная клиника",
+            "price": "150.00",
+            "executor": 5,
+            "category": 5,
+            "photo": "static/service/pet7.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 48,
+        "fields": {
+            "name": "Уход за кошками",
+            "content": "Уход за кошками (мытьё, стрижка, уход за когтями)",
+            "timetable": "По предварительной договорённости",
+            "address": "Салон для животных",
+            "price": "20.00",
+            "executor": 5, 
+            "category": 5,
+            "photo": "static/service/pet8.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 49,
+        "fields": {
+            "name": "Уход за грызунами",
+            "content": "Уход за грызунами (чистка клеток, питание)",
+            "timetable": "Еженедельно или по запросу",
+            "address": "Домашний визит",
+            "price": "15.00",
+            "executor": 5,  
+            "category": 5,
+            "photo": "static/service/pet9.jpg"
+        }
+    },
+    {
+        "model": "catalog.service",
+        "pk": 50,
+        "fields": {
+            "name": "Тренировка животных",
+            "content": "Тренировка собак и кошек",
+            "timetable": "По индивидуальному графику",
+            "address": "Домашний визит",
+            "price": "30.00",
+            "executor": 5, 
+            "category": 5,
+            "photo": "static/service/pet10.jpg"
+        }
+    }
+]

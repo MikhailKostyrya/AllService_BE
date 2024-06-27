@@ -26,6 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     second_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to='static/user', null=True, blank=True)
     contact = models.CharField(max_length=255) # change to number
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
