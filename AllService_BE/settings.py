@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users',
     'catalog',
     'request',
+    'recommendations',
 ]
 
 MIDDLEWARE = [
