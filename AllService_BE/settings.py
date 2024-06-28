@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'catalog',
     'request',
     'recommendations',
+    'city',
 ]
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'

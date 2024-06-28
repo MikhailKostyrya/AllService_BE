@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import ValidationError
 from AllService_BE import settings
 from phonenumber_field.modelfields import PhoneNumberField
+from city.models import City
 
 
 class UserManager(BaseUserManager):
@@ -29,6 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='static/user', null=True, blank=True)
     contact = PhoneNumberField()
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True) 
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)

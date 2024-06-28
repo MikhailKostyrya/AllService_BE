@@ -9,5 +9,5 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['id', 'inn', 'contact_executor']
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'second_name', 'email', 'contact', 'is_staff', 'is_executor']
-    search_fields = ['first_name', 'second_name', 'email', 'contact', 'is_staff', 'is_executor']
+    list_display = ['id', 'first_name', 'second_name', 'email', 'contact', 'city', 'is_staff', 'is_executor']
+    search_fields = ['first_name', 'second_name', 'email', 'contact', 'city', 'is_staff', 'is_executor']

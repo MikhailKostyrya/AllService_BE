@@ -24,7 +24,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Service
-        fields = ['id', 'name', 'content', 'timetable', 'address', 'price', 'executor', 'category']
+        fields = ['id', 'name', 'content', 'timetable', 'city', 'address', 'price', 'executor', 'category']
 
     def create(self, validated_data):
         request = self.context.get('request')
