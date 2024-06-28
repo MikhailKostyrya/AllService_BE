@@ -33,11 +33,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phonenumber_field',
     'users',
     'catalog',
     'request',
     'recommendations',
 ]
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'RU'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -56,9 +60,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
     '172.31.0.3',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://158.160.91.177:8000",
     "http://158.160.91.177",
 ]
 
@@ -145,7 +149,7 @@ REST_FRAMEWORK = {
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': None,
     'USE_SESSION_AUTH': False,
-    'DEFAULT_API_URL': 'http://158.160.91.177:8000',
+    'DEFAULT_API_URL': 'http://158.160.91.177',
 }
 
 
@@ -217,6 +221,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

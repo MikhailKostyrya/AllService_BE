@@ -163,3 +163,4 @@ cython_debug/
 command.txt/
 static
 media
+staticfiles

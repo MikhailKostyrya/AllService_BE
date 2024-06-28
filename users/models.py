@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.forms import ValidationError
 from AllService_BE import settings
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class UserManager(BaseUserManager):
@@ -27,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='static/user', null=True, blank=True)
-    contact = models.CharField(max_length=255) # change to number
+    contact = PhoneNumberField()
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_executor = models.BooleanField(default=False)
@@ -51,5 +52,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class ExecutorData(models.Model):
     content = models.CharField(max_length=255)
-    contact_executor = models.CharField(max_length=255)
+    contact_executor = PhoneNumberField()
     inn = models.CharField(max_length=255)

@@ -17,3 +17,5 @@ elasticsearch==7.17.9
 pillow==10.3.0
 django-redis==5.4.0
 uwsgi==2.0.26
+django-phonenumber-field==8.0.0
+phonenumbers==8.13.39
