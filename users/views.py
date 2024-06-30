@@ -116,37 +116,46 @@ class SendVerificationCodeView(APIView):
         return Response({"message": "Verification code sent to email"}, status=status.HTTP_200_OK)
 
 
-class VerifyAndResetPasswordView(APIView):
+class VerifyVerificationCodeView(APIView):
+    @swagger_auto_schema(request_body=VerifyVerificationCodeSerializer)
+    def post(self, request, *args, **kwargs):
+        serializer = VerifyVerificationCodeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data['email']
+        code = serializer.validated_data['code']
+
+        user = User.objects.get(email=email)
+
+        if email not in cache:
+            return Response({"error": "Verification code has expired."}, status=status.HTTP_400_BAD_REQUEST)
+        if cache.get(email) != code:
+            return Response({'error': 'Invalid verification code'}, status=status.HTTP_400_BAD_REQUEST)
+
+        #del cache[email]
+        return Response({"message": "Verification code is valid."}, status=status.HTTP_200_OK)
+
+
+class ResetPasswordView(APIView):
     @swagger_auto_schema(request_body=ResetPasswordSerializer)
     def post(self, request, *args, **kwargs):
-
-        verify_serializer = VerifyVerificationCodeSerializer(data=request.data)
-        verify_serializer.is_valid(raise_exception=True)
-        email = verify_serializer.validated_data['email']
-        code = verify_serializer.validated_data['code']
+        serializer = ResetPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        email = serializer.validated_data['email']
+        new_password = serializer.validated_data['new_password']
 
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({"error": "User with this email does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
-        cached_code = cache.get(email)
-        if cached_code is None:
-            return Response({"error": "Verification code has expired."}, status=status.HTTP_400_BAD_REQUEST)
-        if cached_code != code:
-            return Response({"error": "Invalid verification code."}, status=status.HTTP_400_BAD_REQUEST)
-
-        reset_serializer = ResetPasswordSerializer(data=request.data)
-        reset_serializer.is_valid(raise_exception=True)
-        new_password = reset_serializer.validated_data['new_password']
-
         user.set_password(new_password)
         user.save()
+        if email in cache:
+            cache.delete(email)
 
-        cache.delete(email)
         return Response({"message": "Password reset successfully."}, status=status.HTTP_200_OK)
-
-
+    
 
 class DeleteAccountView(APIView):
     permission_classes = [IsAuthenticated]

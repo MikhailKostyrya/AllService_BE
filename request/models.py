@@ -17,6 +17,7 @@ class Request(models.Model):
     address = models.CharField(max_length=255, null=False)
     create_date = models.DateTimeField(auto_now_add=True)
     time = models.DateTimeField()
+    # timetable = ArrayField(models.DateTimeField(), null=False, blank=True, default=list)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
 
