@@ -5,15 +5,17 @@ from django.forms import FileField as FormFileField
 from django.utils.deconstruct import deconstructible
 from PIL import Image, ImageFile
 
+
 def is_svg(file):
-    file.seek(0)  # Перемещаем указатель в начало файла
+    file.seek(0)
     try:
         header = file.read(100).decode('utf-8', errors='ignore').strip()
         return header.startswith('<svg')
     except UnicodeDecodeError:
         return False
     finally:
-        file.seek(0)  # Сбрасываем указатель в начало файла
+        file.seek(0)
+
 
 @deconstructible
 class SVGAndImageFieldValidator:
@@ -32,6 +34,7 @@ class SVGAndImageFieldValidator:
                 Image.open(value.file).verify()
             except (IOError, SyntaxError):
                 raise ValidationError(self.error_messages['invalid_image'])
+
 
 class CustomImageField(FileField):
     default_validators = [SVGAndImageFieldValidator()]

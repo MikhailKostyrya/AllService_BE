@@ -1,13 +1,14 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
-
+from .date_utils import filter_out_busy_times, get_date_times_from_json
 from catalog.models import Service
 from catalog.serializers import User
 from .models import Request
 from .serializers import RequestCreateSerializer, RequestDetailSerializer, RequestListSerializer, RequestStatusSerializer
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
+from datetime import datetime, timedelta
 
 
 class RequestCreateAPIView(generics.GenericAPIView):
@@ -84,3 +85,42 @@ class ExecutorRequestsListView(generics.ListAPIView):
             service = get_object_or_404(Service, id=service_id)
             return Request.objects.filter(service=service, service__executor__user=user)
         return Request.objects.filter(service__executor__user=user)
+    
+
+class AvailableTimesAPIView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        service_id = self.kwargs.get('service_id')
+        year = int(request.GET.get('year'))
+        month = int(request.GET.get('month'))
+
+        service = get_object_or_404(Service, id=service_id)
+        schedule_json = service.timetable  # используем поле timetable
+
+        date_times = get_date_times_from_json(schedule_json, year, month)
+
+        start_date = datetime(year, month, 1)
+        if month == 12:
+            end_date = datetime(year + 1, 1, 1)
+        else:
+            end_date = datetime(year, month + 1, 1)
+
+        busy_requests = Request.objects.filter(
+            service=service,
+            date_times__0__gte=start_date,
+            date_times__0__lt=end_date
+        )
+
+        busy_times = []
+        for request in busy_requests:
+            for time_range in request.date_times:
+                busy_start = time_range.replace(tzinfo=None)  # Приведение к offset-naive
+                busy_end = busy_start + timedelta(hours=1)  # Предположим, что длительность записи - 1 час
+                busy_times.append((busy_start, busy_end))
+
+        available_times = filter_out_busy_times(date_times, busy_times)
+
+        return Response({
+            "available_times": available_times,
+        }, status=status.HTTP_200_OK)
