@@ -47,7 +47,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'password', 'first_name', 'second_name')
+        fields = ('email', 'password', 'first_name', 'second_name',)
 
     def create(self, validated_data):
         user = User.objects.create_user(is_active=False, **validated_data)
@@ -56,6 +56,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 class SendVerificationCodeSerializer(serializers.Serializer):
     email = serializers.EmailField()
+
+
+class CytyUserSerializer(serializers.Serializer):
+    class Meta:
+        model = User
+        fields = ('city')
 
 
 class VerifyVerificationCodeSerializer(serializers.Serializer):

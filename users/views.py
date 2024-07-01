@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
@@ -31,6 +31,7 @@ class VerifyAccountView(APIView):
 
 class UserLoginAPIView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         email = request.data.get('email')
@@ -48,6 +49,7 @@ class UserLoginAPIView(generics.GenericAPIView):
 
 class UserRegistrationAPIView(generics.GenericAPIView):
     serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -86,6 +88,8 @@ class UserRegistrationAPIView(generics.GenericAPIView):
 
 
 class SendVerificationCodeView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(request_body=SendVerificationCodeSerializer)
     def post(self, request, *args, **kwargs):
         serializer = SendVerificationCodeSerializer(data=request.data)
@@ -116,48 +120,59 @@ class SendVerificationCodeView(APIView):
         return Response({"message": "Verification code sent to email"}, status=status.HTTP_200_OK)
 
 
-class VerifyAndResetPasswordView(APIView):
+class VerifyVerificationCodeView(APIView):
+    permission_classes = [AllowAny]
+
+    @swagger_auto_schema(request_body=VerifyVerificationCodeSerializer)
+    def post(self, request, *args, **kwargs):
+        serializer = VerifyVerificationCodeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data['email']
+        code = serializer.validated_data['code']
+
+        user = User.objects.get(email=email)
+
+        if email not in cache:
+            return Response({"error": "Verification code has expired."}, status=status.HTTP_400_BAD_REQUEST)
+        if cache.get(email) != code:
+            return Response({'error': 'Invalid verification code'}, status=status.HTTP_400_BAD_REQUEST)
+
+        #del cache[email]
+        return Response({"message": "Verification code is valid."}, status=status.HTTP_200_OK)
+
+
+class ResetPasswordView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(request_body=ResetPasswordSerializer)
     def post(self, request, *args, **kwargs):
-
-        verify_serializer = VerifyVerificationCodeSerializer(data=request.data)
-        verify_serializer.is_valid(raise_exception=True)
-        email = verify_serializer.validated_data['email']
-        code = verify_serializer.validated_data['code']
+        serializer = ResetPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        email = serializer.validated_data['email']
+        new_password = serializer.validated_data['new_password']
 
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({"error": "User with this email does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
-        cached_code = cache.get(email)
-        if cached_code is None:
-            return Response({"error": "Verification code has expired."}, status=status.HTTP_400_BAD_REQUEST)
-        if cached_code != code:
-            return Response({"error": "Invalid verification code."}, status=status.HTTP_400_BAD_REQUEST)
-
-        reset_serializer = ResetPasswordSerializer(data=request.data)
-        reset_serializer.is_valid(raise_exception=True)
-        new_password = reset_serializer.validated_data['new_password']
-
         user.set_password(new_password)
         user.save()
+        if email in cache:
+            cache.delete(email)
 
-        cache.delete(email)
         return Response({"message": "Password reset successfully."}, status=status.HTTP_200_OK)
-
-
+    
 
 class DeleteAccountView(APIView):
-    permission_classes = [IsAuthenticated]
-
+    
     def post(self, request, *args, **kwargs):
         request.user.delete()
         return Response({"message": "Account deleted successfully."}, status=status.HTTP_200_OK)
 
 
 class UserProfileUpdateView(APIView):
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user)

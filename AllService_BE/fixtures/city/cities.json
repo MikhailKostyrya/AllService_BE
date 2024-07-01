@@ -1,0 +1,583 @@
+[
+    {
+        "model": "city.City",
+        "pk": 1,
+        "fields": {
+            "name": "Москва"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 2,
+        "fields": {
+            "name": "Санкт-Петербург"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 3,
+        "fields": {
+            "name": "Новосибирск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 4,
+        "fields": {
+            "name": "Екатеринбург"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 5,
+        "fields": {
+            "name": "Нижний Новгород"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 6,
+        "fields": {
+            "name": "Казань"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 7,
+        "fields": {
+            "name": "Челябинск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 8,
+        "fields": {
+            "name": "Омск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 9,
+        "fields": {
+            "name": "Самара"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 10,
+        "fields": {
+            "name": "Ростов-на-Дону"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 11,
+        "fields": {
+            "name": "Уфа"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 12,
+        "fields": {
+            "name": "Волгоград"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 13,
+        "fields": {
+            "name": "Пермь"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 14,
+        "fields": {
+            "name": "Красноярск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 15,
+        "fields": {
+            "name": "Воронеж"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 16,
+        "fields": {
+            "name": "Саратов"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 17,
+        "fields": {
+            "name": "Тюмень"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 18,
+        "fields": {
+            "name": "Тольятти"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 19,
+        "fields": {
+            "name": "Барнаул"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 20,
+        "fields": {
+            "name": "Иркутск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 21,
+        "fields": {
+            "name": "Ярославль"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 22,
+        "fields": {
+            "name": "Краснодар"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 23,
+        "fields": {
+            "name": "Ульяновск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 24,
+        "fields": {
+            "name": "Улан-Удэ"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 25,
+        "fields": {
+            "name": "Владивосток"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 26,
+        "fields": {
+            "name": "Хабаровск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 27,
+        "fields": {
+            "name": "Кемерово"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 28,
+        "fields": {
+            "name": "Томск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 29,
+        "fields": {
+            "name": "Оренбург"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 30,
+        "fields": {
+            "name": "Новокузнецк"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 31,
+        "fields": {
+            "name": "Рязань"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 32,
+        "fields": {
+            "name": "Пенза"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 33,
+        "fields": {
+            "name": "Белгород"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 34,
+        "fields": {
+            "name": "Астрахань"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 35,
+        "fields": {
+            "name": "Набережные Челны"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 36,
+        "fields": {
+            "name": "Махачкала"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 37,
+        "fields": {
+            "name": "Чита"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 38,
+        "fields": {
+            "name": "Калининград"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 39,
+        "fields": {
+            "name": "Брянск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 40,
+        "fields": {
+            "name": "Тверь"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 41,
+        "fields": {
+            "name": "Иваново"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 42,
+        "fields": {
+            "name": "Вологда"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 43,
+        "fields": {
+            "name": "Липецк"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 44,
+        "fields": {
+            "name": "Курск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 45,
+        "fields": {
+            "name": "Тула"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 46,
+        "fields": {
+            "name": "Сочи"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 47,
+        "fields": {
+            "name": "Сургут"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 48,
+        "fields": {
+            "name": "Нижневартовск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 49,
+        "fields": {
+            "name": "Новороссийск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 50,
+        "fields": {
+            "name": "Нижнекамск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 51,
+        "fields": {
+            "name": "Ангарск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 52,
+        "fields": {
+            "name": "Северодвинск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 53,
+        "fields": {
+            "name": "Норильск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 54,
+        "fields": {
+            "name": "Благовещенск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 55,
+        "fields": {
+            "name": "Нальчик"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 56,
+        "fields": {
+            "name": "Абакан"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 57,
+        "fields": {
+            "name": "Якутск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 58,
+        "fields": {
+            "name": "Магнитогорск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 59,
+        "fields": {
+            "name": "Сыктывкар"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 60,
+        "fields": {
+            "name": "Петрозаводск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 61,
+        "fields": {
+            "name": "Мурманск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 62,
+        "fields": {
+            "name": "Владикавказ"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 63,
+        "fields": {
+            "name": "Архангельск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 64,
+        "fields": {
+            "name": "Ноябрьск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 65,
+        "fields": {
+            "name": "Грозный"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 66,
+        "fields": {
+            "name": "Симферополь"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 67,
+        "fields": {
+            "name": "Севастополь"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 68,
+        "fields": {
+            "name": "Майкоп"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 69,
+        "fields": {
+            "name": "Элиста"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 70,
+        "fields": {
+            "name": "Назрань"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 71,
+        "fields": {
+            "name": "Ханты-Мансийск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 72,
+        "fields": {
+            "name": "Ноябрьск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 73,
+        "fields": {
+            "name": "Солнечногорск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 74,
+        "fields": {
+            "name": "Сальск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 75,
+        "fields": {
+            "name": "Новочеркасск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 76,
+        "fields": {
+            "name": "Анапа"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 77,
+        "fields": {
+            "name": "Армавир"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 78,
+        "fields": {
+            "name": "Пятигорск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 79,
+        "fields": {
+            "name": "Ставрополь"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 80,
+        "fields": {
+            "name": "Ессентуки"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 81,
+        "fields": {
+            "name": "Железноводск"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 82,
+        "fields": {
+            "name": "Минеральные Воды"
+        }
+    },
+    {
+        "model": "city.City",
+        "pk": 83,
+        "fields": {
+            "name": "Кисловодск"
+        }
+    }
+]

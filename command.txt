@@ -7,3 +7,11 @@ source venv/bin/activate -- запуск venv
 deactivate -- выход из venv
 
 python3 manage.py loaddata <folder>/<filename>.json -- заполнение бд данными из json
+
+
+
+DOCKERFILE
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+docker-compose.yml
+    command: ["./wait-for-db.sh", "db", "python", "manage.py", "runserver", "0.0.0.0:8000"]
