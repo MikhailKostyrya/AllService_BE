@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, status, permissions
+from rest_framework import generics, status
 from rest_framework.response import Response
 from .date_utils import filter_out_busy_times, get_date_times_from_json
 from catalog.models import Service
@@ -13,7 +13,6 @@ from datetime import datetime, timedelta
 
 class RequestCreateAPIView(generics.GenericAPIView):
     serializer_class = RequestCreateSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     @swagger_auto_schema(request_body=RequestCreateSerializer)
     def post(self, request):
@@ -41,7 +40,6 @@ class RequestDetailAPIView(generics.RetrieveAPIView):
     queryset = Request.objects.all()
     serializer_class = RequestDetailSerializer
     lookup_field = 'id'
-    permission_classes = [permissions.IsAuthenticated]
 
     @swagger_auto_schema(operation_description="Get details of a specific request by ID")
     def get(self, request, *args, **kwargs):
@@ -50,7 +48,6 @@ class RequestDetailAPIView(generics.RetrieveAPIView):
 
 class AllRequestListAPIView(generics.ListAPIView):
     serializer_class = RequestListSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
@@ -58,7 +55,6 @@ class AllRequestListAPIView(generics.ListAPIView):
  
 
 class RequestStatusUpdateAPIView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
 
     @swagger_auto_schema(request_body=RequestStatusSerializer)
     def put(self, request, id):
@@ -81,7 +77,6 @@ class RequestStatusUpdateAPIView(APIView):
 
 
 class ExecutorRequestsListView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated]
     serializer_class = RequestListSerializer
 
     def get_queryset(self):
@@ -97,7 +92,6 @@ class ExecutorRequestsListView(generics.ListAPIView):
     
 
 class AvailableTimesAPIView(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         service_id = self.kwargs.get('service_id')

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
@@ -31,6 +31,7 @@ class VerifyAccountView(APIView):
 
 class UserLoginAPIView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         email = request.data.get('email')
@@ -48,6 +49,7 @@ class UserLoginAPIView(generics.GenericAPIView):
 
 class UserRegistrationAPIView(generics.GenericAPIView):
     serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -86,6 +88,8 @@ class UserRegistrationAPIView(generics.GenericAPIView):
 
 
 class SendVerificationCodeView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(request_body=SendVerificationCodeSerializer)
     def post(self, request, *args, **kwargs):
         serializer = SendVerificationCodeSerializer(data=request.data)
@@ -117,6 +121,8 @@ class SendVerificationCodeView(APIView):
 
 
 class VerifyVerificationCodeView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(request_body=VerifyVerificationCodeSerializer)
     def post(self, request, *args, **kwargs):
         serializer = VerifyVerificationCodeSerializer(data=request.data)
@@ -136,6 +142,8 @@ class VerifyVerificationCodeView(APIView):
 
 
 class ResetPasswordView(APIView):
+    permission_classes = [AllowAny]
+
     @swagger_auto_schema(request_body=ResetPasswordSerializer)
     def post(self, request, *args, **kwargs):
         serializer = ResetPasswordSerializer(data=request.data)
@@ -158,15 +166,13 @@ class ResetPasswordView(APIView):
     
 
 class DeleteAccountView(APIView):
-    permission_classes = [IsAuthenticated]
-
+    
     def post(self, request, *args, **kwargs):
         request.user.delete()
         return Response({"message": "Account deleted successfully."}, status=status.HTTP_200_OK)
 
 
 class UserProfileUpdateView(APIView):
-    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         serializer = UserSerializer(request.user)

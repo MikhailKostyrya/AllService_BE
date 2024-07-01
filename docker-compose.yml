@@ -15,7 +15,7 @@ services:
 
   web:
     build: .
-    command: ["./wait-for-db.sh", "db", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: ["./wait-for-db.sh", "db", "uwsgi", "--ini", "/app/uwsgi.ini"]
     volumes:
       - .:/app
     ports:

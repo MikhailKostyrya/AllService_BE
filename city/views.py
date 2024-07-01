@@ -7,10 +7,10 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.contrib.auth import get_user_model
 from users.models import  User
-from rest_framework.permissions import IsAuthenticated
 
 
 class CityView(views.APIView):
+
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter('format', openapi.IN_QUERY, description="Response format", type=openapi.TYPE_STRING)
@@ -22,7 +22,9 @@ class CityView(views.APIView):
         serializer = CitySerializer(city, many=True)
         return Response(serializer.data)
 
+
 class CityDetailView(views.APIView):
+
     @swagger_auto_schema(responses={200: CitySerializer})
     def get(self, request, city_id, format=None):
         try:
@@ -33,9 +35,7 @@ class CityDetailView(views.APIView):
             return Response({'error': 'City not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
-
 class UserCitySelectionView(views.APIView):
-    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         manual_parameters=[
