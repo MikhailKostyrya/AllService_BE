@@ -19,6 +19,7 @@ class Request(models.Model):
     date_times = ArrayField(models.DateTimeField(), blank=True) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
 
     def __str__(self):
         return f'Request {self.id}'

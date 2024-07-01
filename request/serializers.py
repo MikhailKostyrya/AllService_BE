@@ -10,19 +10,20 @@ class RequestCreateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Request
-        fields = ['address', 'create_date', 'date_times', 'user', 'service']
+        fields = ['create_date', 'date_times', 'service']
+
 
 
 class RequestDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ['id', 'status', 'address', 'create_date', 'date_times', 'user', 'service']
+        fields = ['id', 'status', 'address', 'create_date', 'date_times', 'user', 'service', "price"]
 
 
 class RequestListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ['status', 'address', 'create_date', 'date_times', 'user', 'service']
+        fields = ['id', 'status', 'create_date', 'date_times', 'service', "price"]
 
 
 class RequestStatusSerializer(serializers.ModelSerializer):

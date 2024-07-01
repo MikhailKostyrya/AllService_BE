@@ -19,13 +19,22 @@ class RequestCreateAPIView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
-        request_instance = serializer.save()
+
+        user = request.user
+
+        service = serializer.validated_data['service']
+        price = service.price
+        address = service.address
+        if not address:
+            address = request.data.get('address')
+        serializer.save(price=price, address=address, user=user)
 
         return Response({
-            "request": RequestCreateSerializer(request_instance, context={'request': request}).data,
+            "request": RequestCreateSerializer(serializer.instance, context={'request': request}).data,
             "message": "Request created successfully"
         }, status=status.HTTP_201_CREATED)
+
+
 
 
 class RequestDetailAPIView(generics.RetrieveAPIView):
@@ -96,7 +105,7 @@ class AvailableTimesAPIView(APIView):
         month = int(request.GET.get('month'))
 
         service = get_object_or_404(Service, id=service_id)
-        schedule_json = service.timetable  # используем поле timetable
+        schedule_json = service.timetable
 
         date_times = get_date_times_from_json(schedule_json, year, month)
 

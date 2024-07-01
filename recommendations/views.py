@@ -26,6 +26,11 @@ class RecommendationView(APIView):
 
     def get(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
+        
+        if not user.is_authenticated:
+            return Response({'error': 'User is not authenticated'}, status=401)
+        
+        user_city_id = user.city_id
 
         user_service_ids = self.get_user_service_ids(user)
 
@@ -35,7 +40,7 @@ class RecommendationView(APIView):
         user_category_ids = self.get_user_category_ids(user_service_ids)
         similarity_scores = {}
 
-        other_users = User.objects.exclude(id=user_id)
+        other_users = User.objects.exclude(id=user_id).filter(city_id=user_city_id)
 
         for other_user in other_users:
             other_user_service_ids = self.get_user_service_ids(other_user)
@@ -51,7 +56,8 @@ class RecommendationView(APIView):
             similar_user_category_ids = self.get_user_category_ids(similar_user_service_ids)
 
             new_recommendations = Service.objects.filter(
-                category_id__in=similar_user_category_ids
+                category_id__in=similar_user_category_ids,
+                city_id=user_city_id
             ).exclude(id__in=user_service_ids)
 
             recommended_services.update(new_recommendations.values_list('id', flat=True))
